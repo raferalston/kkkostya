@@ -16,8 +16,8 @@ Including another URLconf
 from rating.views import SimpleView, SimpleFormView
 from django.contrib import admin
 from django.urls import path
-from rating.views import RatingsListView, RatingsEntryListView, RatingsDetailView, ProfileView
-from rating.views import RegistrationView, LoginiView
+from rating.views import RatingsListView, RatingsEntryListView, RatingsDetailView
+from registration.views import RegistrationView, LoginiView, ProfileView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',RatingsListView.as_view(), name="main" ),
