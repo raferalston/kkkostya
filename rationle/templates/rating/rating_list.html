@@ -1,17 +1,18 @@
 {% extends "base.html"%}
-{%block content%}
-<h2>Ratings</h2>
-{{ extra_context }}
-{%for rating in rating_objects%}
-<ul>
-    <li>{{rating.name}}</li>
-    <li>{{rating.text}}</li>
-    <li>{{rating.rate}}</li>
-    <li><a href="rating/{{ rating.id }}">link to - {{rating.name}}</a></li>
-</ul>
---------------------
+{% block content %}
 
-{%endfor%}
+<h2>Ratings</h2>
+
+{% for r in kostya_ispolzyu_norm_imena %}
+    <ul>
+        <li>{{r.name}}</li>
+        <li>{{r.text}}</li>
+        <li>{{r.rate}}</li>
+        <li><a href="rating/{{ r.id }}">link to - {{r.name}}</a></li>
+    </ul>
+    --------------------
+{% endfor %}
+
 <div class="pagination">
     {% if page_obj.has_previous %}
     <a href="?page=1">&laquo; first</a>

@@ -7,32 +7,30 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
-# from django.contrib.auth.views import LoginView
-# from django.contrib.auth.models import User
 from .models import Rating
 from .forms import RegisterForm
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-@method_decorator(login_required, name="dispatch")
 
+
+@method_decorator(login_required, name="dispatch")
 class RatingsDetailView(DetailView):
     model = Rating
+
 class RatingsListView(ListView):
     model = Rating
-    # queryset = Rating.objects.all()
     paginate_by = 2
-    context_object_name = "rating_objects"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["extra_context"] = "Foo"
-        return context 
+    context_object_name = "kostya_ispolzyu_norm_imena"
+    
+
 class RatingsEntryListView(ListView):
-    # model = Rating
-    # queryset = Rating.objects.all()
     template_name = "rating/rating_by_name.html"
     context_object_name = "rating_name_objects"
+
     def get_queryset(self):
         return Rating.objects.filter(name=self.kwargs["name"])
+
+
 @method_decorator(login_required, name="dispatch")
 class SimpleView(View):
     def get(self, request) :

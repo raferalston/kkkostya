@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+
 class Rating(models.Model):
     class Rate(models.IntegerChoices):
         ONE_STAR = 1
@@ -8,12 +9,11 @@ class Rating(models.Model):
         THREE_STAR = 3
         FOUR_STAR = 4
         FIVE_STAR = 5
+
     class Meta:
         ordering = ["-date"]
 
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    # name = models.CharField(max_length=30)
-    # text = models.TextField(blank=False)
     date = models.DateTimeField(auto_now_add=True)
     rate = models.IntegerField(choices=Rate.choices)
 

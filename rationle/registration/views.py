@@ -7,16 +7,14 @@ from django.contrib.auth.models import User
 from rating.forms import RegisterForm
 from django.urls import reverse_lazy
 from rating.models import Rating
+
 class ProfileView(DetailView):
     template_name = "registration/profile.html"
-    get_object = Rating.objects.get(id=1)
     model = User
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["hello"] = "ha, ya watchin' some old code ;)?"
-    #     return context 
+
     def get_object(self):
         return get_object_or_404(User, username=self.request.user.username)
+
 class LoginiView(LoginView):
     template_name = "registration/login.html"
     success_url = reverse_lazy("main")
